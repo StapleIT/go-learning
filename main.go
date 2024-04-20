@@ -26,4 +26,19 @@ func main() {
 		fmt.Println("Error:", err)
 		return
 	}
+
+	// this is exercising the principle of using a pointer as reveiver in a method definition
+	// thus ensuring that the variable of the method's target type is not only
+	// modified within the method but outside of it too
+	// I'm not sure why I don't need to say 'p.IncrMthd()' for a method coming from the pointers (p) package ??
+	// I think it's because the variable 'b' has already been created as type p.T so the methods of p.T are
+	// automatically available without referencing the package ??
+
+	var b p.T = 0
+	for i := 0; i < 5; i++ {
+		b.IncrMthd()
+		//fmt.Println(i)
+		//fmt.Println(b)
+	}
+	fmt.Println(b)
 }
