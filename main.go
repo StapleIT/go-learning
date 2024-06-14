@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os/exec"
 
+	ft "github.com/StapleIT/go-learning/function_types"
+	h "github.com/StapleIT/go-learning/httpbymatryer"
 	p "github.com/StapleIT/go-learning/pointers"
 	u "github.com/StapleIT/go-learning/utils"
 )
@@ -41,4 +43,26 @@ func main() {
 		//fmt.Println(b)
 	}
 	fmt.Println(b)
+
+	//running code with funtion type definition from function_types
+
+	// ft.MyFunc is a type which merely states that a variable declared of this type must
+	// be a function with no arguments and no return values: func()
+	var d ft.MyFunc = func() {
+		fmt.Println("function is printing to stdout")
+	}
+	//interestingly, one can now call the variable as if it is a function itself
+	d()
+	d.RequiredMethod()
+	var e func() = func() {
+		fmt.Println("function of type func() with no method")
+	}
+	//type conversion to include the method from d witht the function declared as e:
+
+	f := ft.MyFunc(e)
+	f()
+	f.RequiredMethod()
+
+	//run the http server test
+	h.Run()
 }
